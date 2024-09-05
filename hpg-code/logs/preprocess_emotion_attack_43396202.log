@@ -1,0 +1,33 @@
+Traceback (most recent call last):
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 187, in <module>
+    main()
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 177, in main
+    process_caer(data_dir)
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 122, in process_caer
+    for file in os.listdir(original_test_path):
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/red/ruogu.fang/share/emotion_adversarial_attack/data/raw/CAER-S/test/Angry'
+Traceback (most recent call last):
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 187, in <module>
+    main()
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 179, in main
+    process_dvisa(data_dir)
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 134, in process_dvisa
+    emotion_class = df.iloc[:, 1].tolist()
+                    ~~~~~~~^^^^^^
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/indexing.py", line 1184, in __getitem__
+    return self._getitem_tuple(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/indexing.py", line 1690, in _getitem_tuple
+    tup = self._validate_tuple_indexer(tup)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/indexing.py", line 966, in _validate_tuple_indexer
+    self._validate_key(k, i)
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/indexing.py", line 1592, in _validate_key
+    self._validate_integer(key, axis)
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/indexing.py", line 1685, in _validate_integer
+    raise IndexError("single positional indexer is out-of-bounds")
+IndexError: single positional indexer is out-of-bounds
+Wed Sep  4 01:48:44 EDT 2024
+c0706a-s11.ufhpc
+/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code

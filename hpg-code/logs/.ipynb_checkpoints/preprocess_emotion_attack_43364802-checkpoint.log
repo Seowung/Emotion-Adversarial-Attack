@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 85, in <module>
+    main()
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 81, in main
+    process_emoset('/red/ruogu.fang/share/emotion_adversarial_attack/data')
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 20, in process_emoset
+    os.mkdir(os.path.join(processed_dir, 'train'))
+FileNotFoundError: [Errno 2] No such file or directory: '/red/ruogu.fang/share/emotion_adversarial_attack/data/processed/EmoSet-118K/train'
+Tue Sep  3 19:49:07 EDT 2024
+c0706a-s2.ufhpc
+/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 85, in <module>
+    main()
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 80, in main
+    if dataset == 'emoset':
+       ^^^^^^^
+NameError: name 'dataset' is not defined
+Tue Sep  3 19:47:31 EDT 2024
+c0707a-s10.ufhpc
+/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code

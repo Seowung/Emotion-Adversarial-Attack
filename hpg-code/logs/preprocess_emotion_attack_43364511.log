@@ -1,0 +1,7 @@
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 22
+    if not os.path.exists(os.path.join(processed_dir, 'val')):
+                                                             ^
+SyntaxError: invalid syntax
+Tue Sep  3 19:44:15 EDT 2024
+c0707a-s10.ufhpc
+/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code

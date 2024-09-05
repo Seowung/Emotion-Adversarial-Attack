@@ -1,0 +1,57 @@
+Traceback (most recent call last):
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 186, in <module>
+    main()
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 176, in main
+    process_caer(data_dir)
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 120, in process_caer
+    shutil.copytree(original_train_path, destination_path)
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/shutil.py", line 600, in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/shutil.py", line 498, in _copytree
+    os.makedirs(dst, exist_ok=dirs_exist_ok)
+  File "<frozen os>", line 225, in makedirs
+FileExistsError: [Errno 17] File exists: '/red/ruogu.fang/share/emotion_adversarial_attack/data/processed/CAER-S/Surprise'
+Traceback (most recent call last):
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'artwork'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 186, in <module>
+    main()
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 178, in main
+    process_dvisa(data_dir)
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 132, in process_dvisa
+    img_list = df['artwork'].tolist()
+               ~~^^^^^^^^^^^
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'artwork'
+Traceback (most recent call last):
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 186, in <module>
+    main()
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 180, in main
+    process_fi(data_dir)
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 158, in process_fi
+    shutil.copytree(original_path, destination_path)
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/shutil.py", line 600, in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/shutil.py", line 498, in _copytree
+    os.makedirs(dst, exist_ok=dirs_exist_ok)
+  File "<frozen os>", line 225, in makedirs
+FileExistsError: [Errno 17] File exists: '/red/ruogu.fang/share/emotion_adversarial_attack/data/processed/FI/Anger'
+Tue Sep  3 20:51:33 EDT 2024
+c0706a-s11.ufhpc
+/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code

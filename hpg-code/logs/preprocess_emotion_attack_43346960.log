@@ -1,0 +1,12 @@
+
+EnvironmentNameNotFound: Could not find conda environment: UFRC Python-3.10
+You can list all discoverable environments with `conda info --envs`.
+
+
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 15
+    test_split = json.load(f
+                           ^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+Tue Sep  3 17:04:32 EDT 2024
+c0701a-s1.ufhpc
+/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code

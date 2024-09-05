@@ -1,0 +1,58 @@
+Traceback (most recent call last):
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 183, in <module>
+    main()
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 171, in main
+    process_artphoto(data_dir)
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 89, in process_artphoto
+    img_list = [f for f in os.listdir(directory) if f.endswith('.jpg')]
+                                      ^^^^^^^^^
+NameError: name 'directory' is not defined
+Traceback (most recent call last):
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 183, in <module>
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 173, in main
+    case 'FI':
+        ^^^^^^^
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 118, in process_caer
+    shutil.copytree(original_test_path, destination_path, dirs_exist_ok=True)
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/shutil.py", line 598, in copytree
+    with os.scandir(src) as itr:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/red/ruogu.fang/share/emotion_adversarial_attack/data/raw/CAER-S/test/Angry'
+Traceback (most recent call last):
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 180, in <module>
+    main()
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 172, in main
+    process_dvisa(data_dir)
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 127, in process_dvisa
+    emotion_class = df.iloc[:, 1].tolist()
+                    ~~~~~~~^^^^^^
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/indexing.py", line 1184, in __getitem__
+    return self._getitem_tuple(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/indexing.py", line 1690, in _getitem_tuple
+    tup = self._validate_tuple_indexer(tup)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/indexing.py", line 966, in _validate_tuple_indexer
+    self._validate_key(k, i)
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/indexing.py", line 1592, in _validate_key
+    self._validate_integer(key, axis)
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/site-packages/pandas/core/indexing.py", line 1685, in _validate_integer
+    raise IndexError("single positional indexer is out-of-bounds")
+IndexError: single positional indexer is out-of-bounds
+Traceback (most recent call last):
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 180, in <module>
+    main()
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 174, in main
+    process_fi(data_dir)
+  File "/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code/process_data.py", line 152, in process_fi
+    shutil.copytree(original_path, destination_path)
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/shutil.py", line 600, in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/blue/ruogu.fang/akshayashok/conda/envs/emotion/lib/python3.12/shutil.py", line 498, in _copytree
+    os.makedirs(dst, exist_ok=dirs_exist_ok)
+  File "<frozen os>", line 225, in makedirs
+FileExistsError: [Errno 17] File exists: '/red/ruogu.fang/share/emotion_adversarial_attack/data/processed/FI/Anger'
+Tue Sep  3 21:03:04 EDT 2024
+c0706a-s10.ufhpc
+/blue/ruogu.fang/akshayashok/emotion_adversarial_attack/code
