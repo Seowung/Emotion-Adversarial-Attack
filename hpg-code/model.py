@@ -50,6 +50,7 @@ class WSCNet(nn.Module):
         x = self.GAP(x)  # x = self.GMP(x)
         x = self.spatial_pooling(x)
         x = x.view(x.size(0), -1)
+        
         # cls branch
         x_conv = self.spatial_pooling(x_conv)
         x_conv = x_conv * x.view(x.size(0), x.size(1), 1, 1)
@@ -62,7 +63,9 @@ class WSCNet(nn.Module):
         x_conv_copy = self.GAP(x_conv_copy)
         x_conv_copy = x_conv_copy.view(x_conv_copy.size(0), -1)
         x_conv_copy = self.classifier(x_conv_copy)
-        return x, x_conv_copy
+        
+        return x_conv_copy
+        #return x, x_conv_copy
 
 
 class BaseModel(nn.Module):
@@ -220,7 +223,8 @@ class PDANet(nn.Module):
         feature_cat = torch.cat((out, spatial_feature), 1)
         out = self.fc(feature_cat)
         out_classify = self.fc_classify(feature_cat)
-        return out, out_classify, out
+        return out_classify
+        #return out, out_classify, out
 
 
 class SENet_block(nn.Module):
@@ -329,8 +333,10 @@ class Stimuli_Aware_VEA(nn.Module):
         negative = negative.view(negative.size(0), 1)
 
         sentiment = torch.cat([positive, negative], dim=1)
+        
+        return emotion
 
-        return emotion, sentiment
+        #return emotion, sentiment
 
 
 class Attention(nn.Module):
