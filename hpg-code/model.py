@@ -27,8 +27,8 @@ class WSCNet(nn.Module):
         self.downconv = nn.Sequential(
             nn.Conv2d(2048, num_classes * num_maps, kernel_size=1, stride=1, padding=0, bias=True))
 
-        self.GAP = nn.AvgPool2d(14)
-        self.GMP = nn.MaxPool2d(14)
+        self.GAP = nn.AvgPool2d(7) # change this part because image is 224 x 224
+        self.GMP = nn.MaxPool2d(7) # change this part because image is 224 x 224
 
         pooling = nn.Sequential()
         pooling.add_module('class_wise', ClassWisePool(num_maps))
@@ -50,6 +50,7 @@ class WSCNet(nn.Module):
         x = self.GAP(x)  # x = self.GMP(x)
         x = self.spatial_pooling(x)
         x = x.view(x.size(0), -1)
+        
         # cls branch
         x_conv = self.spatial_pooling(x_conv)
         x_conv = x_conv * x.view(x.size(0), x.size(1), 1, 1)
@@ -62,7 +63,9 @@ class WSCNet(nn.Module):
         x_conv_copy = self.GAP(x_conv_copy)
         x_conv_copy = x_conv_copy.view(x_conv_copy.size(0), -1)
         x_conv_copy = self.classifier(x_conv_copy)
-        return x, x_conv_copy
+        
+        return x_conv_copy
+        #return x, x_conv_copy
 
 
 class BaseModel(nn.Module):
@@ -94,9 +97,8 @@ class CAERSNet(BaseModel):
         self.two_stream_net = TwoStreamNetwork()
         self.fusion_net = FusionNetwork(use_face, use_context, concat)
 
-    def forward(self, face=None, context=None):
+    def forward(self, face=None, context=True):
         face, context = self.two_stream_net(face, context)
-
         return self.fusion_net(face, context)
 
 
@@ -146,7 +148,7 @@ class TwoStreamNetwork(nn.Module):
 
 
 class FusionNetwork(nn.Module):
-    def __init__(self, use_face=True, use_context=True, concat=False, num_class=8):
+    def __init__(self, use_face=False, use_context=True, concat=False, num_class=8):
         super().__init__()
         # add batch norm to ensure the mean and std of
         # face and context features are not too different
@@ -220,7 +222,8 @@ class PDANet(nn.Module):
         feature_cat = torch.cat((out, spatial_feature), 1)
         out = self.fc(feature_cat)
         out_classify = self.fc_classify(feature_cat)
-        return out, out_classify, out
+        return out_classify
+        #return out, out_classify, out
 
 
 class SENet_block(nn.Module):
@@ -285,12 +288,12 @@ class Stimuli_Aware_VEA(nn.Module):
         super(Stimuli_Aware_VEA, self).__init__()
         self.fcn = nn.Sequential(*list(base_model.children())[:-2])
 
-        self.face = models.resnet18()
+        #self.face = models.resnet18()
         self.conv1 = nn.Conv1d(3072, 3072, 1, bias=True)
-        self.lstm = Decoder(feat_size=2048, hidden_size=512)
+        #self.lstm = Decoder(feat_size=2048, hidden_size=512)
         self.sigmoid = nn.Sigmoid()
 
-        self.GAvgPool = nn.AvgPool2d(kernel_size=14)
+        self.GAvgPool = nn.AvgPool2d(kernel_size=7)  # change this part because image is 224 x 224
         self.classifiers_x = nn.Sequential(
             nn.Linear(in_features=2048, out_features=128),
             nn.ReLU(),
@@ -298,26 +301,27 @@ class Stimuli_Aware_VEA(nn.Module):
             nn.Linear(in_features=128, out_features=1)
             )
 
-        self.classifier8 = nn.Sequential(
-            nn.Linear(in_features=2048 + 512 +512, out_features=8)
-            )
+        #self.classifier8 = nn.Sequential(nn.Linear(in_features=2048 + 512 +512, out_features=8))
+        self.classifier8 = nn.Sequential(nn.Linear(in_features=2048, out_features=8))
 
         self.ReLU = nn.ReLU()
         self.softmax = nn.Softmax()
         self.sigmoid = nn.Sigmoid()
 
 
-    def forward(self, x, face, rcnn, fmask):
+    def forward(self, x):
         x1 = self.fcn(x)
         x = self.GAvgPool(x1)
         x = x.view(x.size(0), x.size(1))
 
-        face, face1 = self.face(face)
-        rcnn, _, alpha = self.lstm(rcnn)
+        #face = self.face(face)
+        #rcnn, _, alpha = self.lstm(rcnn)
 
         #-------classifier8--------#
-        features = torch.cat([x, rcnn, face], dim=1)
-        emotion = self.classifier8(features)
+        #features = torch.cat([x, rcnn, face], dim=1)
+        #emotion = self.classifier8(features)
+        
+        emotion = self.classifier8(x)
 
         #-------8to2-------#s
         emotion = F.softmax(emotion, dim=1)
@@ -329,8 +333,10 @@ class Stimuli_Aware_VEA(nn.Module):
         negative = negative.view(negative.size(0), 1)
 
         sentiment = torch.cat([positive, negative], dim=1)
+        
+        return emotion
 
-        return emotion, sentiment
+        #return emotion, sentiment
 
 
 class Attention(nn.Module):
@@ -401,7 +407,3 @@ class Decoder(nn.Module):
             if isinstance(m, nn.Linear):
                 torch.nn.init.uniform_(m.weight.data, a=self.minval, b=self.maxval)
                 m.bias.data.fill_(0)
-
-
-model = Stimuli_Aware_VEA()
-print(model)
